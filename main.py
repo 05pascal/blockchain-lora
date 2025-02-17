@@ -11,7 +11,7 @@ ACCOUNT_ADDRESS = "0xTonAdresseEthereum"
 
 # Connexion à la blockchain
 web3 = Web3(Web3.HTTPProvider(INFURA_URL))
-if not web3.isConnected():
+if not web3.is_connected():
     raise Exception("Échec de connexion à Ethereum")
 
 # Charger ABI du Smart Contract
