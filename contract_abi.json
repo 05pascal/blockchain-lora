@@ -1,0 +1,24 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract IoTDataStorage {
+    struct SensorData {
+        uint256 temperature;
+        uint256 humidity;
+        uint256 timestamp;
+    }
+
+    mapping(string => SensorData) private deviceData;
+
+    event DataStored(string indexed deviceId, uint256 temperature, uint256 humidity, uint256 timestamp);
+
+    function storeData(string memory deviceId, uint256 temperature, uint256 humidity, uint256 timestamp) public {
+        deviceData[deviceId] = SensorData(temperature, humidity, timestamp);
+        emit DataStored(deviceId, temperature, humidity, timestamp);
+    }
+
+    function getLatestData(string memory deviceId) public view returns (uint256, uint256, uint256) {
+        SensorData memory data = deviceData[deviceId];
+        return (data.temperature, data.humidity, data.timestamp);
+    }
+}
