@@ -15,7 +15,7 @@ if not web3.is_connected():
     raise Exception("Échec de connexion à Ethereum")
 
 # Charger ABI du Smart Contract
-with open("contract_abi.json", "r") as abi_file:
+with open("contract_abi.json", "s") as abi_file:
     contract_abi = json.load(abi_file)
 contract = web3.eth.contract(address=CONTRACT_ADDRESS, abi=contract_abi)
 
